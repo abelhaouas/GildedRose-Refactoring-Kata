@@ -109,4 +109,15 @@ class GildedRoseTest {
         assertEquals(50, app.items[0].getQuality());
 
     }
+
+    @Test
+    void testConjured() {
+        Item[] items = new Item[] {
+            new Item("Conjured", 3, 6)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(2, app.items[0].getSellIn());
+        assertEquals(4, app.items[0].getQuality());
+    }
 }

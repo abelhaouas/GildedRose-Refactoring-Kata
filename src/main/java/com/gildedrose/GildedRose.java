@@ -18,8 +18,11 @@ class GildedRose {
             } else if (BACKSTAGE_PASSES.getName().equals(item.getName())) {
                 updateBackstagePasses(item);
             } else if (SULFURAS.getName().equals(item.getName())) {
+            } else if (CONJURED.getName().equals(item.getName())) {
+                // "Conjured" items degrade in Quality twice as fast as normal items
+                updateNormal(item, 2);
             } else {
-                updateNormal(item);
+                updateNormal(item, 1);
             }
         }
     }
@@ -52,14 +55,14 @@ class GildedRose {
         }
     }
 
-    private void updateNormal(Item item) {
+    private void updateNormal(Item item,int value) {
         if (item.getQuality() > 0) {
-            item.setQuality(item.getQuality() - 1);
+            item.setQuality(item.getQuality() - value);
         }
         item.setSellIn(item.getSellIn() - 1);
 
         if (item.getSellIn() < 0 && item.getQuality() > 0) {
-            item.setQuality(item.getQuality() - 1);
+            item.setQuality(item.getQuality() - value);
         }
     }
 
