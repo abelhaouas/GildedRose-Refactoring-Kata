@@ -10,7 +10,9 @@ class GildedRose {
         this.items = items;
     }
 
-
+    /**
+     * updateQuality main method
+     */
     public void updateQuality() {
         for (Item item : items) {
             if (AGED_BRIE.getName().equals(item.getName())) {
@@ -18,6 +20,7 @@ class GildedRose {
             } else if (BACKSTAGE_PASSES.getName().equals(item.getName())) {
                 updateBackstagePasses(item);
             } else if (SULFURAS.getName().equals(item.getName())) {
+                // don't need to updateQuality for Sulfuras item
             } else if (CONJURED.getName().equals(item.getName())) {
                 // "Conjured" items degrade in Quality twice as fast as normal items
                 updateNormal(item, 2);
@@ -27,6 +30,10 @@ class GildedRose {
         }
     }
 
+    /**
+     * update Quality and SellIn for Aged Brie item
+     * @param item
+     */
     private void updateAgedBrie(Item item) {
         if (item.getQuality() < 50) {
             item.setQuality(item.getQuality() + 1);
@@ -37,6 +44,10 @@ class GildedRose {
         }
     }
 
+    /**
+     * update Quality and SellIn for Backstage passes item
+     * @param item
+     */
     private void updateBackstagePasses(Item item) {
 
         if (item.getQuality() < 50) {
@@ -55,6 +66,11 @@ class GildedRose {
         }
     }
 
+    /**
+     * update Quality and SellIn for Narmal and Conjured item
+     * @param item
+     * @param value
+     */
     private void updateNormal(Item item,int value) {
         if (item.getQuality() > 0) {
             item.setQuality(item.getQuality() - value);
